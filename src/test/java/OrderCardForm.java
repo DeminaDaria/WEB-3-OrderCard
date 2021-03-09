@@ -17,15 +17,16 @@ public class OrderCardForm {
 
     @BeforeAll
     static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "C:\\NetologyWork\\AutoTest\\Repository\\orderCard\\driver\\win\\chromedriver");
+        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
 
     }
 
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless", "--screenshot");
-        driver = new ChromeDriver(options);
+        options.addArguments("--headless");
+        driver = new ChromeDriver();
+
     }
 
     @AfterEach
@@ -36,15 +37,15 @@ public class OrderCardForm {
 
     @Test
     void shouldTestSomething() {
-        driver.get("http://localhost:999");
+        driver.get("http://localhost:9999");
         List<WebElement> elements = driver.findElements(By.className("input__control"));
         elements.get(0).sendKeys("Василий Пупкин");
         elements.get(1).sendKeys("+71234567895");
-        driver.findElement(By.className("checkbox__control")).click();
+        driver.findElement(By.className("checkbox_theme_alfa-on-white")).click();
         driver.findElement(By.tagName("button")).click();
 
-        String text = driver.findElement(By.id("order-success")).getText();
-        assertEquals("  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+        String text = driver.findElement(By.className("paragraph_theme_alfa-on-white")).getText();
+        assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
 
     }
 }
