@@ -15,7 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(SeleniumJupiter.class)
+//@ExtendWith(SeleniumJupiter.class)
 
 public class OrderCardForm {
     private WebDriver driver;
@@ -29,7 +29,7 @@ public class OrderCardForm {
     void setUp() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        driver = new ChromeDriver();
+        driver = new ChromeDriver(options);
 
     }
 
