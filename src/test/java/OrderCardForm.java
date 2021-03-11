@@ -11,11 +11,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-//@ExtendWith(SeleniumJupiter.class)
+@ExtendWith(SeleniumJupiter.class)
 
 public class OrderCardForm {
     private WebDriver driver;
@@ -40,16 +38,17 @@ public class OrderCardForm {
     }
 
     @Test
-    void shouldTestSomething() {
+    void shouldSubmitRequest() {
         driver.get("http://localhost:9999");
-        List<WebElement> elements = driver.findElements(By.className("input__control"));
-        elements.get(0).sendKeys("Василий Пупкин");
-        elements.get(1).sendKeys("+71234567895");
-        driver.findElement(By.className("checkbox_theme_alfa-on-white")).click();
+        WebElement name =driver.findElement(By.cssSelector("[data-test-id=name] input"));
+        name.sendKeys("Иван Римский-Корсаков");
+        WebElement phone = driver.findElement(By.cssSelector("[data-test-id=phone] input"));
+        phone.sendKeys("+71234567895");
+        WebElement checkBox = driver.findElement(By.cssSelector("[data-test-id=agreement]"));
+        checkBox.click();
         driver.findElement(By.tagName("button")).click();
 
-        String text = driver.findElement(By.className("paragraph_theme_alfa-on-white")).getText();
+        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
         assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
-
     }
 }
