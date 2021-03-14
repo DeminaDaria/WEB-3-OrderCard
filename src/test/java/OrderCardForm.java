@@ -37,12 +37,9 @@ public class OrderCardForm {
     @Test
     void shouldSubmitRequest() {
         driver.get("http://localhost:9999");
-        WebElement name =driver.findElement(By.cssSelector("[data-test-id=name] input"));
-        name.sendKeys("Иван Римский-Корсаков");
-        WebElement phone = driver.findElement(By.cssSelector("[data-test-id=phone] input"));
-        phone.sendKeys("+71234567895");
-        WebElement checkBox = driver.findElement(By.cssSelector("[data-test-id=agreement]"));
-        checkBox.click();
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Иван Римский-Корсаков");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+71234567895");
+        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.tagName("button")).click();
 
         String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
